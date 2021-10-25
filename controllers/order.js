@@ -57,20 +57,13 @@ module.exports.create = async function(req, res) {
         }).save()
         
         const reciver = await User.findOne({_id: req.user.id})
-        // var str =""
-        // var list = req.body.list
-        // for(var i=0;i<=list.length;i++){
-        //   str += list[i].name +", "+list[i].cost + ", "+ list[i].quantity+ "| "
-        // }
-
-
+        
         var mailOptions = {
           from: 'example202110@gmail.com',
           to: reciver.email,
           subject: 'Thanks for buying!!!',
           template: 'email',
           context: {
-            // StrMassage: this.str,
             price: req.body.price
           }
         };
