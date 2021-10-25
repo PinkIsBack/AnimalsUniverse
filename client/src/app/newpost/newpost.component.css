@@ -1,0 +1,15 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+@import "../shared/styles/styles.min.css";
+.dn{
+  display: none;
+}
+
+.cpost{
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 80%;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    background-color: rgb(219, 219, 219);
+
+}

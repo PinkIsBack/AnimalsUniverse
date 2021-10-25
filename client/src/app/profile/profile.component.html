@@ -1,0 +1,144 @@
+<div *ngIf="user; else loader">
+  <div class="row py-5 px-4">
+    <div class="col-md-5 mx-auto">
+      <!-- Profile widget -->
+      <div class="bg-white shadow rounded overflow-hidden">
+        <div class="px-4 pt-0 pb-4 cover">
+          <div class="media align-items-end profile-head">
+            <div class="profile mr-3">
+              <img *ngIf="user.image;else imageEmpty" [src]="user.image" alt="nothing" width="130"
+                class="rounded mb-2 img-thumbnail">
+              <ng-template #imageEmpty>
+                <img width="130" class="rounded mb-2 img-thumbnail" src="assets/log_in.png">
+              </ng-template>
+              <button (click)="openDialog(userId)" [disabled]="ifUser" type="button"
+                class="btn btn-outline-dark btn-sm btn-block">
+                Edit profile
+              </button>
+            </div>
+            <div class="media-body mb-5 text-white">
+              <h4 class="mt-0 mb-0">{{user.userName}}</h4>
+              <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>From :{{user.city}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-light p-4 d-flex justify-content-end text-center">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <h5 class="font-weight-bold mb-0 d-block">{{this.posts.length}}</h5><small class="text-muted"> <i
+                  class="fas fa-image mr-1"></i>Posts</small>
+            </li>
+            <li *ngIf="!ifUser" class="list-inline-item">
+              <h5 class="font-weight-bold mb-0 d-block">{{this.wishs.length}}</h5><small class="text-muted"> <i
+                  class="fas fa-user mr-1"></i>WishList</small>
+            </li>
+          </ul>
+        </div>
+        <div class="px-4 py-3">
+          <h5 class="mb-0">About</h5>
+          <div class="p-4 rounded shadow-sm bg-light">
+
+            <p class="font-italic mb-0">{{user.phone}}</p>
+            <p class="font-italic mb-0">{{user.email}}</p>
+            <p class="font-italic mb-0">{{user.description}}</p>
+
+          </div>
+        </div>
+        <!--Menu-->
+        <div style="width:auto; height: 40px;">
+          <button class="butt" mat-raised-button (click)="showPosts()">posts</button>
+          <button class="butt" *ngIf="!ifUser" mat-raised-button (click)="showWish()">WhishList</button>
+          <button class="butt" *ngIf="!ifUser" mat-raised-button (click)="showOrders()">My Orders</button>
+        </div>
+        <!--Posts-->
+        <div *ngIf="sposts">
+          <div class="py-4 px-4">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="mb-0">My posts : || {{this.posts.length}} ||</h5>
+            </div>
+            <div class="poss" *ngFor="let post of posts">
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img [src]="post.ImgSrc" style="width: 190px;height:190px;" />
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{post.Name}}</h5>
+                      <p class="card-text">{{post.Description}}</p>
+                      <p class="card-text">Age: {{post.Age}}</p>
+                      <a *ngIf="!ifUser" mat-raised-button color="primary" [routerLink]="['/posts', post._id]">
+                        <mat-icon>create</mat-icon>Edit
+                      </a>
+                      <button *ngIf="!ifUser" mat-raised-button color="warn" (click)="deletePost(post._id)">
+                        <mat-icon>delete</mat-icon>Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Wish-->
+        <div *ngIf="swish">
+          <div class="py-4 px-4">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="mb-0"> WishList: || {{wishs.length}} ||</h5>
+            </div>
+            <div *ngFor="let wish of wishs">
+              <div *ngFor="let i of wposts">
+                <div class="poss" *ngIf="i._id==wish">
+                  <table>
+                    <tr>
+                      <td rowspan="2">
+                        <img [src]="i.ImgSrc" style="height: 190px; width: 300px;" />
+                      </td>
+                      <td style="width: 50%;">
+                        <o>{{i.Name}} Age: {{i.Age}}</o><br>
+                        <hr>
+                        {{i.Description}}
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Orders-->
+        <div *ngIf="sorder">
+          <div class="py-4 px-4">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="mb-0"> Orders: || {{orders.length}} ||</h5>
+            </div>
+                <div>
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>№</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Total cost</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                      <tr *ngFor="let order of orders">
+                          <td>{{order.order}}</td>
+                          <td>{{order.date | date:'dd/MM/yyyy'}}</td>
+                          <td>{{order.date | date:'HH:mm:ss'}}</td>
+                          <td>{{order.price}}</td>
+                  </table>
+                </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <mat-spinner></mat-spinner>
+</ng-template>

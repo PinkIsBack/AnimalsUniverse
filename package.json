@@ -1,0 +1,37 @@
+{
+  "name": "animalsworld",
+  "version": "2.0.0",
+  "description": "The final Project",
+  "main": "index.js",
+  "engines": {
+    "node": "14.16.0",
+    "npm": "7.20.6"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-install && npm run build --prefix client"
+  },
+  "author": "Mark & Dima",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.7",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.7.0",
+    "nodemailer-express-handlebars": "^4.0.0",
+    "nodemon": "^2.0.7",
+    "npm": "^6.14.15",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.2"
+  }
+}

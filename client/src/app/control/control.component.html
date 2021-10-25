@@ -1,0 +1,167 @@
+<div class="AdminIcon">
+  <table>
+    <tr>
+      <div class="menuA">
+        <td>
+          <h2> Work with :</h2>
+        </td>
+        <td>
+          <button mat-button (click)="changeWork('userIcon')">Users </button>
+          <button mat-button (click)="changeWork('postIcon')">Posts </button>
+          <button mat-button (click)="changeWork('shopIcon')">Shop </button>
+          <button mat-button (click)="changeWork('serviceIcon')">Service </button>
+          <button mat-button (click)="changeWork('analyticIcon')">Analytics</button>
+        </td>
+      </div>
+    </tr>
+  </table>
+  <br>
+  <hr><br>
+  <!-- users -->
+  <div *ngIf="userIcon" class="usIcon">
+    <div class="row">
+      <div class="column" *ngFor="let user of users">
+        <div class="card justify-content-center">
+          <img *ngIf="user.image;else empty" class="card-img-top" style="height:200px; border-radius: 20px 20px 0px 0px;"
+            [src]="user.image" />
+          <ng-template #empty>
+            <img width="130" class="card-img-top" style="height:200px; border-radius: 20px 20px 0px 0px;"
+              src="assets/log_in.png">
+          </ng-template>
+          <div style="height: 50px; width: 100%; background-color: rgb(70, 241, 113); font-size: 15px; color: white;">
+            {{user.description}}
+          </div>
+          {{user.userName}} || Email: {{user.email}}
+          <div class="align-items-end" style="width: 80%;">
+            <button mat-button (click)="toUser(user._id)"><img src="assets/log_in.png"
+                style="width: 20px; border-radius: 50%;" /></button>
+          </div>
+          <hr>
+          <div>
+            <button mat-button (click)="changeStatus(user._id)">
+              <mat-icon>cached</mat-icon>
+            </button>
+            <button mat-button (click)="removeUser(user._id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- posts -->
+  <div *ngIf="postIcon" class="psIcon">
+    <div class="row">
+      <div class="column" *ngFor="let post of posts">
+        <div class="card justify-content-center">
+          <img *ngIf="post.ImgSrc;else empty" class="card-img-top"
+            style="height:200px; border-radius: 20px 20px 0px 0px;" [src]="post.ImgSrc" />
+          <ng-template #empty>
+            <img width="130" class="card-img-top" style="height:200px; border-radius: 20px 20px 0px 0px;"
+              src="assets/logo.png">
+          </ng-template>
+          <div style="height: 50px; width: 100%; background-color: rgb(70, 241, 113); font-size: 15px; color: white;">
+            {{post.Description}}
+          </div>
+          {{post.Name}} || Age: {{post.Age}}
+          <div class="align-items-end" style="width: 80%;">
+            {{post.UserName}}
+            <button mat-button (click)="toUser(post.User)"><img src="assets/log_in.png"
+                style="width: 20px; border-radius: 50%;" /></button>
+          </div>
+          <hr>
+          <div>
+            <p>
+              <mat-icon>room</mat-icon>
+              <u>{{post.City}}</u>
+              <button mat-icon-button>
+                <mat-icon>favorite_border</mat-icon>
+              </button>
+              <u>Price:{{post.Price}}₪</u>
+            </p>
+            <a *ngIf="!ifUser" mat-raised-button color="primary" [routerLink]="['/posts', post._id]">
+              <mat-icon>create</mat-icon>Edit
+            </a>
+            <button *ngIf="!ifUser" mat-raised-button color="warn" (click)="deletePost(post._id)">
+              <mat-icon>delete</mat-icon>Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- shop -->
+  <div *ngIf="shopIcon" class="shIcon">
+    <button mat-button (click)="addProduct()">Add New Product</button>
+    <div class="row">
+      <div class="column" *ngFor="let product of products">
+        <div class="card justify-content-center">
+          <img class="card-img-top" style="height:200px; border-radius: 20px 20px 0px 0px;" [src]="product.ImgUrl" />
+          <div style="height: 50px; width: 100%; background-color: rgb(70, 241, 113); font-size: 15px; color: white;">
+            {{product.Description |slice}}
+          </div>
+          <p>{{product.Name}}</p>
+          <hr>
+          <p>Price:{{product.Price}}₪
+            <a *ngIf="!ifUser" mat-raised-button color="primary" [routerLink]="['/shop', product._id]">
+              <mat-icon>create</mat-icon>Edit
+            </a>
+            <button *ngIf="!ifUser" mat-raised-button color="warn" (click)="deleteProduct(product._id)">
+              <mat-icon>delete</mat-icon>Delete
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- services -->
+  <div *ngIf="serviceIcon" class="srIcon">
+    <button mat-button (click)="addService()">Add New Service</button>
+    <div class="container">
+      <div *ngFor="let info of serviceInfo">
+        <div class="media" style="margin-top: 50px;">
+          <img class="align-self-center mr-3" [src]="info.img" />
+          <div class="media-body">
+            <div class="row justify-content-md-center" style="margin-bottom:10px;">
+              <div class="col-sm col-3">
+                <h5 class="mt-0">name:</h5>
+                <hr>
+                {{info.name}}
+              </div>
+              <div class="col-sm col-4 ">
+                <h5>address:</h5>
+                <hr>
+                {{info.address}}
+              </div>
+              <div class="col-sm col-4">
+                <h5>website:</h5>
+                <hr>
+                <button mat-raised-button color="accent" (click)="goToSite(info.web)">Link</button>
+              </div>
+              <div class="col-sm col-4">
+                <h5>phone:</h5>
+                <hr>
+                {{info.phone}}
+              </div>
+              <div class="col-sm col-4">
+                <h5>Action</h5>
+                <hr>
+                <button style="width:100px" [routerLink]="['/service', info._id]" mat-raised-button color="accent">
+                  <mat-icon>create</mat-icon>edit
+                </button>
+                <button style="width:100px" (click)="removeService(info._id)" mat-raised-button color="accent">
+                  <mat-icon>delete</mat-icon>remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="analyticIcon" class="srIcon">
+    <app-analytics-page></app-analytics-page>
+    <hr>
+  </div>
+</div>
+<button class="scroll" (click)="scrollToTop()">To Top</button>

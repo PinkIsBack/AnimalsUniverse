@@ -1,0 +1,87 @@
+<div class="sh">
+<form  style="width: 50%;"  #loginForm="ngForm" (ngSubmit)="add(loginForm)" novalidate>
+   <div class="dropdown">
+      <button [disabled] class="dropbtn">What animal</button>
+      <div class="dropdown-content">
+           <font class="fff">Dog</font><input  name="dog" ngModel type="checkbox" value="dog"  #dog="ngModel"  /><br>
+           <font class="fff">Cat</font><input name="cat" ngModel type="checkbox"  value="cat"  #cat="ngModel"/><br>
+           <font class="fff">Others</font><input name="others" ngModel type="checkbox" value="others"  #others="ngModel" />
+      </div>
+    </div>
+    <div class="dropdown">
+      <button [disabled] class="dropbtn">Age</button>
+      <div class="dropdown-content">
+           <font class="fff">up to 1 year </font><input  name="one" ngModel type="checkbox" value="one"  #one="ngModel"  /><br>
+           <font class="fff">up to 5 year </font><input name="five" ngModel type="checkbox"  value="five"  #five="ngModel"/><br>
+           <font class="fff">up to 10 year </font><input name="ten" ngModel type="checkbox" value="ten"  #ten="ngModel" />
+      </div>
+    </div>
+    <div class="dropdown">
+      <button [disabled] class="dropbtn">Gender</button>
+      <div class="dropdown-content">
+           <font class="fff">Male</font><input  name="Male" ngModel type="checkbox" value="Male"  #Male="ngModel"  /><br>
+           <font class="fff">Female</font><input name="Female" ngModel type="checkbox"  value="Female"  #Female="ngModel"/><br>
+      </div>
+    </div>
+    <div class="dropdown">
+        <button [disabled] class="dropbtn">City</button>
+        <div class="dropdown-content">
+             <font class="fff">Haifa</font><input  name="Haifa" ngModel type="checkbox" value="Haifa"  #Haifa="ngModel"  /><br>
+             <font class="fff">Tel-aviv</font><input name="Tel_aviv" ngModel type="checkbox"  value="Tel_aviv"  #Tel_aviv="ngModel"/><br>
+             <font class="fff">Afula</font><input name="Afula" ngModel type="checkbox"  value="Afula"  #Afula="ngModel"/><br>
+             <font class="fff">Karmiel</font><input name="Karmiel" ngModel type="checkbox"  value="Karmiel"  #Karmiel="ngModel"/><br>
+        </div>
+      </div>
+    <button style="margin-left: 10px; background-color: none;" class="sub" type="submit" ><img style="width: 30px; margin-right: 10px; height: 30px; border-radius: 40%;" src="assets/search.png"/></button>
+
+
+</form>
+<div class="ddd"></div>
+<font (click)="meetpartner()" class="df">Meet partner</font>
+<font class="dff">add new post -></font>
+<div class="addd"  ><button mat-button style="border-radius:100%;right:9px" (click)="addProduct()" [disabled]="!inside"><h3>+</h3></button></div>
+</div>
+
+<div class="row" *ngIf="!reloading; else loader">
+  <div class="column" *ngFor="let post of Plist">
+    <div class="card justify-content-center" >
+      <img *ngIf="post.ImgSrc;else empty" class="card-img-top" style="height:200px; border-radius: 20px 20px 0px 0px;" [src]="post.ImgSrc"/>
+      <ng-template #empty>
+                 <img  width="130" class="card-img-top" style="height:200px; border-radius: 20px 20px 0px 0px;" src="assets/logo.png">
+              </ng-template>
+      <div style="height: 50px; width: 100%; background-color: rgb(70, 241, 113); font-size: 15px; color: white;">
+         {{post.Description}}
+      </div>
+       {{post.Name}} || Age: {{post.Age}}
+
+             <div class="align-items-end" style="width: 80%;">
+             {{post.UserName}}
+             <button mat-button  (click)="toUser(post.User)"><img src="assets/log_in.png" style="width: 20px; border-radius: 50%;" /></button>
+            </div>
+
+       <hr>
+    <div>
+        <p>
+          <mat-icon>room</mat-icon>
+          <u>{{post.City}}</u>
+          <button mat-icon-button (click)="like(post)">
+            <mat-icon>favorite_border</mat-icon>
+          </button>
+         <font *ngIf="post.Action=='meet'" style="color:red;">Meet</font>
+        <font *ngIf="post.Action=='sale'"><u>Price:{{post.Price}}₪</u></font>
+      </p>
+     </div>
+    </div>
+  </div>
+  <button style="margin-left:45%;"
+    *ngIf="!noMorePosts"
+    mat-raised-button (click)="loadMore()">
+    <mat-icon>cached</mat-icon>Load more
+    </button>
+</div>
+
+<ng-template #loader>
+  <div class="center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

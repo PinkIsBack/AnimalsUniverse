@@ -1,0 +1,139 @@
+.sh{
+    position:relative;
+    width: 1137px;
+    height: 47px;
+    margin-top: 4%;
+    margin-left: 15%;
+    margin-right: 15%;
+    /* Panel */
+    background: linear-gradient(270deg, #CCDD05 1.19%, rgba(255, 255, 255, 0) 103.12%), radial-gradient(118.34% 69254.58% at 11.04% 48.94%, #0AD142 0%, rgba(255, 242, 126, 0) 100%);
+    background-blend-mode: normal, darken;
+    /* Panel */
+    box-shadow: inset 16px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 22px;
+}
+/*-------------MENU----------------MENU-----MENU-------------------------------------*/
+.dropbtn {
+  margin-top: 7%;
+  margin-left: 30px;
+  background-color:inherit;
+  color: white;
+  padding: 5px;
+  font-size: 15px;
+  border: none;
+  border-radius: 20%;
+  cursor: pointer;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 20%;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1;
+    border-radius: 40%;}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+.fff{
+    color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+.sr{
+  border-radius: 30%;
+  margin-left: 20%;
+}
+.sub{
+  border-radius: 40%;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  left:370px;
+  border:none;
+}
+.img1{
+  width:20vh;
+  height:25vh;
+  margin-left:15%;
+  margin-bottom:15%;
+}
+.addd{
+  position: relative;
+  left: 1090px;
+  text-align: center;
+  bottom: 90px;
+  font-size: 30px;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background-color: rgb(238, 255, 0);
+}
+.addd:hover{
+  background-color: rgb(35, 212, 0);
+}
+.ddd{
+  position: relative;
+  left: 800px;
+  text-align: center;
+  bottom: 42px;
+  font-size: 30px;
+  width: 5px;
+  height: 47px;
+  background-color: rgb(55, 208, 255);
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;margin-left: 10%; margin-right: 10%;}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  margin-top: 40px;
+  border-radius: 10%;
+  height: 400px;
+  width:100%;
+}
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,68 @@
+<form  [formGroup]="form">
+<table>
+  <tr>
+    <td>
+      <div>
+      <mat-label>UserName</mat-label>
+          <input formControlName="userName" id="userName" type="text" >
+      </div>
+      <div>
+        <mat-label>Email</mat-label>
+            <input formControlName="email" id="email" type="text" >
+        </div>
+      <div>
+      <mat-label>City</mat-label>
+          <input formControlName="city" id="City" type="text">
+      </div>
+      <div>
+      <mat-label>Phone</mat-label>
+          <input formControlName="phone" id="Phone" type="text">
+      </div>
+      <div>
+      <mat-label>Description</mat-label>
+          <input formControlName="description" id="Description" type="text">
+      </div>
+      <div *ngIf="this.stat=='1'" >
+       <mat-form-field  appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status" id="status">
+            <mat-option value=1>1:Admin</mat-option>
+            <mat-option value=2>2:User</mat-option>
+            <mat-option value=3>3:Ban</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+    </td>
+    <td>
+      <div style=" width: 50%; height: 50%;">
+        <div class="col s12 l4 center">
+          <img
+          class="responsive-img h200"
+          [src]="imagePreview"
+          *ngIf="imagePreview">
+        </div>
+        <input
+        (change)="onFileUpload($event)"
+        type="file"
+        class="dn"
+        #input>
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+</form>
+<div class="row">
+  <button type="submit" (click)="onSubmit()" [disabled]="form.invalid || form.disabled" class="btn btn-primary">Submit
+  </button>
+  <button class="btn btn-secondary" (click)="close()">Close</button>
+  <button
+  (click)="triggerClick()"
+  type="button"
+  [disabled]="form.disabled"
+  class="waves-effect waves-light btn orange lighten-2">
+    <i class="material-icons left">backup</i>
+    Upload image
+  </button>
+</div>

@@ -1,0 +1,19 @@
+li{
+    margin-left: 60px;
+}
+.log{
+
+width: 52px;
+height: 54px;
+
+}
+.logoo{
+    width: 80px;
+    transition: .5s ease-in-out;
+}
+.logoo:hover{
+    transform: rotate(360deg);
+}
+.shop_cart {
+  margin-right: 5%;
+}

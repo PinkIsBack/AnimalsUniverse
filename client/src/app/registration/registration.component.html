@@ -1,0 +1,68 @@
+<form
+  class="card"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="card-content">
+    <small class="card-title">Create Accaunt</small>
+    <div class="input-field">
+      <input
+      formControlName="userName"
+      [ngClass]="{'invalid': form.get('userName').invalid && form.get('userName').touched}"
+      type="email"
+      id="userName"
+      >
+      <label for="userName">Username:</label>
+      <small
+        class="helper-text red-text"
+       *ngIf="form.get('userName').invalid && form.get('userName').touched">
+       <small *ngIf="form.get('userName').errors['required']">Username field cannot be empty</small>
+      </small>
+    </div>
+      <div class="input-field">
+      <input
+        formControlName="email"
+        id="email"
+        type="email"
+        [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}"
+      >
+      <label for="email">Email:</label>
+      <small
+        class="helper-text red-text"
+        *ngIf="form.get('email').invalid && form.get('email').touched"
+      >
+        <small *ngIf="form.get('email').errors['required']">Email field cannot be empty</small>
+        <small *ngIf="form.get('email').errors['email']">Email address isn`t correct</small>
+      </small>
+    </div>
+    <div class="input-field">
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
+      >
+      <label>Password:</label>
+      <small
+        class="helper-text red-text"
+        *ngIf="form.get('password').invalid && form.get('password').touched"
+      >
+        <small *ngIf="form.get('password').errors['required']">Password field cannot be empty</small>
+        <small *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+          Password must be bigger than {{form.get('password').errors['minlength']['requiredLength']}} symbols.
+          Now {{form.get('password').errors['minlength']['actualLength']}}
+        </small>
+      </small>
+    </div>
+  </div>
+  <div class="card-action">
+    <button
+      type="submit"
+      class="modal-action btn waves-effect"
+      [disabled]="form.invalid || form.disabled"
+    >
+      Create
+    </button>
+  </div>
+</form>
+

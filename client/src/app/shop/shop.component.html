@@ -1,0 +1,47 @@
+<div class="sh">
+<form style="width: 50%;" [formGroup]="form"  #loginForm="ngForm" (ngSubmit)="add(loginForm)" novalidate>
+   <div class="dropdown">
+      <button [disabled] class="dropbtn">Type of product</button>
+      <div class="dropdown-content">
+           <font class="fff">food</font><input formControlName="food"  name="food"  type="checkbox" value="food"    /><br>
+           <font class="fff">toys</font><input formControlName="toys" name="toys"  type="checkbox"  value="toys" /><br>
+           <font class="fff">clothes</font><input formControlName="clothes" name="clothes"  type="checkbox" value="clothes"   />
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button [disabled] class="dropbtn">What animal?</button>
+      <div class="dropdown-content">
+           <font class="fff">Dog</font><input formControlName="dog" name="dog"  type="checkbox" value="dog"   /><br>
+           <font class="fff">Cat</font><input formControlName="cat" name="cat"  type="checkbox"  value="cat" /><br>
+           <font class="fff">Others</font><input formControlName="others" name="others"  type="checkbox" value="others"  />
+      </div>
+    </div>
+    <button style="margin-left: 10px; background-color: none;" class="sub" type="submit" ><img style="width: 30px; margin-right: 10px; height: 30px; border-radius: 40%;" src="assets/search.png"/></button>
+</form>
+</div>
+<br>
+<div class="row" *ngIf="!reloading; else loader">
+  <div class="column" *ngFor="let product of Productslist">
+    <div class="card justify-content-center" >
+      <img class="card-img-top" style="height:200px; border-radius: 20px 20px 0px 0px;" [src]="product.ImgUrl"/>
+      <div style="height: 50px; width: 100%; background-color: rgb(70, 241, 113); font-size: 15px; color: white;">
+         {{product.Description}}
+      </div>
+      <p>{{product.Name}}</p>
+       <hr>
+        <p>Price:{{product.Price}}₪
+        <input matInput style="width: 40px;"  type="number" value="1" min="1" [(ngModel)]="product.Quantity">
+        <button mat-button class="btn" (click)="buy(product)">buy<mat-icon>shopping_cart</mat-icon></button>
+        </p>
+    </div>
+  </div>
+    <button style="margin-left:45%;"
+    *ngIf="!noMoreProducts"
+    mat-raised-button (click)="loadMore()" >
+    <mat-icon>cached</mat-icon>Load more
+    </button>
+</div>
+<ng-template #loader>
+    <mat-spinner></mat-spinner>
+</ng-template>

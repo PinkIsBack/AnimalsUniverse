@@ -1,0 +1,54 @@
+<div class="bodd">
+<div style="margin-left: 15%; margin-right: 15%;">
+</div>
+<div class="aboUs">
+     <u> <h4 style="text-align: center;">About Us</h4></u>
+      <hr>
+      <p style="text-align: center; font-size: 25px;">אתר זה נוצר עבור אנשים שאוהבים בעלי חיים ורוצים לקבל את השירות הדרוש להם במהירות ובקלות.
+        אתר זה מספק למשתמש
+        היכולת לקנות בעלי חיים וכל מה שהם צריכים. זה עובד על ידי פרסום אנשים אחרים, המשתמש יכול גם ליצור דף משלו שבעזרתו הוא יכול ליצור פוסטים למכירה וזיווג של בעלי חיים. כמו כן באתר שלנו יש מידע על מרפאות שונות, וטרינרים, בתי ספר שונים וכו '.</p>
+      <h4 style="text-align: center;">Have A Nice Day =)</h4>
+</div>
+<!--  -->
+<div *ngIf="inside">
+ <div id="container" *ngIf="!loading; else loader">
+    <div class="product-details">
+      <h1>{{product.Name}}</h1>
+      <div class="control">
+        <button class="btn"  (click)="addToCart(product)">
+          <span class="price">{{product.Price}} ₪</span>
+          <span class="buy">Get now</span>
+        </button>
+      </div>
+    </div>
+    <div class="product-image">
+      <img
+        [src]="product.ImgUrl"
+        alt="">
+      <div class="info">
+        <h2> Description</h2>
+        <ul>
+          <li>{{product.Description}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<ng-template #loader>
+  <div class="center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+</div>
+<!--  -->
+<div class="infS">
+  <table>
+    <tr>
+      <td><img style="width: 400px; border-radius: 20px 0px 0px 20px;  " src="assets/cat1.jpg"/></td>
+      <td><p style="font-size: 30px; text-align: center;">לא יודעים באיזו חיה לבחור? או שבחרת אך אינך מכיר את אופיו?
+        לאחר מכן </p>
+      <button (click)="toAboutPage()" class="btn" style="margin-left: 40%; border: 2px grey solid; background-color: rgb(143, 143, 255); font-size: 20px;">לחץ כאן</button></td>
+
+    </tr>
+</table>
+</div>
+</div>

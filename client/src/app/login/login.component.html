@@ -1,0 +1,30 @@
+
+<form  [formGroup]="form" >
+  <div class="form-group">
+    <mat-label>Email address</mat-label>
+    <input formControlName="email" id="email" type="email"
+      [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}">
+    <span *ngIf="form.get('email').invalid && form.get('email').touched" style="color: red;">
+      <span *ngIf="form.get('email').errors['email']">Invalid email</span>
+      <span *ngIf="form.get('email').errors['required']">Invalid email</span>
+    </span>
+  </div>
+  <div class="form-group">
+    <mat-label>Password</mat-label>
+    <input id="password" type="password" formControlName="password"
+      [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}">
+  </div>
+  <span *ngIf="form.get('password').invalid && form.get('password').touched">
+  <span *ngIf="form.get('password').errors['required']" style="color: red;">Invalid
+    password
+  </span>
+</span>
+</form>
+<div class="row">
+  <button type="submit" (click)="onSubmit()" [disabled]="form.invalid || form.disabled" class="btn btn-primary">Submit
+  </button>
+  <button (click)="register()" class="btn btn-primary">Registratoin</button>
+  <button class="btn btn-secondary" (click)="close()">Close</button>
+</div>
+
+

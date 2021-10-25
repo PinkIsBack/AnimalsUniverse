@@ -1,0 +1,90 @@
+<div class="cpost" style="position: relative;">
+  <form [formGroup]="form"  (ngSubmit)="onSubmit()">
+    <div style="width: 50%; height: 100%; position: absolute;">
+      <mat-form-field appearance="legacy">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="Name"  type="text" placeholder="Enter name">
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Age</mat-label>
+        <input matInput placeholder="Enter an age" formControlName="Age" type="number" min="0">
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>City</mat-label>
+        <input matInput  formControlName="City" placeholder="Enter a City">
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Price</mat-label>
+        <input matInput placeholder="Enter an Price" formControlName="Price" type="number" min="0">
+      </mat-form-field>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a type of animal</mat-label>
+          <mat-select formControlName="Animal" id="Animal">
+            <mat-option value="Dog">Dog</mat-option>
+            <mat-option value="Cat">Cat</mat-option>
+            <mat-option value="Other">Others</mat-option>
+          </mat-select>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="fill">
+          <mat-label>Sale/Meet partner</mat-label>
+          <mat-select formControlName="Action" id="Action">
+            <mat-option value="sale">Sale</mat-option>
+            <mat-option value="meet">Meet partner</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose an gender</mat-label>
+        <mat-select  formControlName="Gender" id="Gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>
+        <mat-form-field appearance="fill" style="width: 98%;">
+          <mat-label>Description</mat-label>
+          <input matInput #message maxlength="256"
+          formControlName="Description"
+          placeholder="Type some information">
+          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+        </mat-form-field>
+      </p>
+      <div *ngIf="isNew;else edit">
+      <button style="margin-left: 2%;" type="submit"
+        [disabled]="form.invalid"
+        class="modal-action btn waves-effect">Create</button>
+      </div>
+      <ng-template #edit>
+        <button style="margin-left: 2%;" (click)="update()"
+        class="modal-action btn waves-effect">Update</button>
+      </ng-template>
+    </div>
+
+    <div style=" width: 50%; height: 100%; left: 50%; position: absolute;">
+
+
+      <div class="col s12 l4 center" style="width:80%; height:70%;margin-left:10%;">
+        <img style="width:100%; height:100%"
+         class="responsive-img h200"
+         [src]="imagePreview"
+         *ngIf="imagePreview">
+      </div>
+      <input
+      (change)="onFileUpload($event)"
+       type="file"
+       class="dn"
+       #input>
+      <button
+      style="margin-left:35%;"
+      (click)="triggerClick()"
+      type="button"
+      [disabled]="form.disabled"
+      class="waves-effect waves-light btn orange lighten-2 mb2">
+        <i class="material-icons left">backup</i>
+        Upload image
+      </button>
+    </div>
+  </form>
+</div>

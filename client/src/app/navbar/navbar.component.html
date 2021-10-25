@@ -1,0 +1,44 @@
+<nav style="width: 100%; margin-left: 0%;" class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <a class="navbar-brand" routerLink="/home"><img class="logoo" src="assets/logo1.png" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+    aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="shop">Shop
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="posts">Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="service">Service</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="about">About Animals</a>
+      </li>
+    </ul>
+    <button mat-icon-button class="shop_cart" routerLink="cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <div *ngIf="isLog; else entryBlock">
+      <button mat-button [matMenuTriggerFor]="menu">{{userName}}</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/profile', this.userId]">Profile</button>
+        <div *ngIf="this.status==1"><button mat-menu-item (click)="toAdminIcon()">Control</button></div>
+        <button mat-menu-item (click)="changePassword()">Change Password</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </div>
+    <ng-template #entryBlock>
+      <button mat-button class="btn" (click)="openDialog()">
+        <img class="log" src="assets/log_in.png" />
+      </button>
+    </ng-template>
+  </div>
+</nav>

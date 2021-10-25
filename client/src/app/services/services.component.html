@@ -1,0 +1,64 @@
+<div class="servmenu">
+  <ul>
+    <li>
+      <button mat-stroked-button (click)="show('0')" color="accent">הכול</button>
+    </li>
+    <li>
+      <button mat-stroked-button (click)="show('1')" color="accent">בתי ספר</button>
+    </li>
+    <li>
+      <button mat-stroked-button (click)="show('2')" color="accent">בתי גידול</button>
+    </li>
+    <li>
+      <button mat-stroked-button (click)="show('3')" color="accent">וטרינרים</button>
+    </li>
+    <li>
+      <button mat-stroked-button (click)="show('4')" color="accent">חוות סוסים</button>
+    </li>
+    <li>
+      <button mat-stroked-button (click)="show('5')" color="accent">מספרת כלבים וחתולים</button>
+    </li>
+    <li>
+      <button mat-stroked-button (click)="show('6')" color="accent">עמודות/אגודות</button>
+    </li>
+    <li>
+      <button mat-stroked-button (click)="show('7')" color="accent">פנסיונים</button>
+    </li>
+  </ul>
+</div>
+
+<div class="container">
+  <div *ngFor="let info of serviceInfo">
+    <div class="media" *ngIf="info.type==id || id=='0'" style="margin-top: 50px;">
+      <img class="align-self-center mr-3" [src]="info.img" />
+      <div class="media-body">
+        <div class="row justify-content-md-center" style="margin-bottom:10px;">
+          <div class="col-sm col-3">
+            <h5 class="mt-0">name:</h5>
+            <hr>
+            {{info.name}}
+          </div>
+          <div class="col-sm col-3 ">
+            <h5>address:</h5>
+            <hr>
+            {{info.address}}
+          </div>
+          <div class="col-sm col-3">
+            <h5>website:</h5>
+            <hr>
+            <button mat-raised-button color="accent" (click)="goToSite(info.web)">Link</button>
+          </div>
+          <div class="col-sm col-3">
+            <h5>phone:</h5>
+            <hr>
+            {{info.phone}}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<button class="scroll" (click)="scrollToTop()">To Top</button>
