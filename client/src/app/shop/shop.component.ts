@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CartService } from '../cart/cart.service';
+import { SnackBar } from '../shared/classes/snack-bar.service';
 import { Product, Statistics } from '../shared/interfaces';
 import { ShopService } from '../shared/services/shop.service';
 import { StatisticsService } from '../shared/services/statistics.service';
@@ -33,6 +34,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
 
   constructor(private shopService: ShopService,
+              private snackBar: SnackBar,
               private cart: CartService,
               private stat: StatisticsService) { }
 
@@ -93,6 +95,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   buy(product: Product){
     this.cart.add(product)
+    this.snackBar.openSnackBar("Added "+product.Quantity+" to your cart")
   }
 
   show(){

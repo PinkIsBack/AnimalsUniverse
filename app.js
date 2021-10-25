@@ -41,15 +41,15 @@ app.use('/api/control', servisesRoutes)
 app.use('/api/statistics', statisticsRoute)
 
 
-// app.use(express.static('angular'))
+app.use(express.static('angular'))
 
 
-// app.get('*', (req, res) => {
-//     res.sendFile(    
-//         path.resolve(    
-//             __dirname, 'angular', 'index.html'    
-//         )    
-//     )    
-// })        
+app.get('*', (req, res) => {
+    res.sendFile(    
+        path.resolve(    
+            __dirname, 'angular', 'index.html'    
+        )    
+    )    
+})        
 
 module.exports = app

@@ -10,8 +10,8 @@ var transporter = nodemailer.createTransport({
   service: 'Gmail',
   host: 'smtp.gmail.com',
   auth: {
-    user: keys.email.address,
-    pass: keys.email.pass
+    user: keys.nodemailerAddress,
+    pass: keys.nodemailerPassword
   }
 });
 const handlebarOptions = {
