@@ -24,13 +24,13 @@ export class CartComponent implements OnInit {
     this.order = this.cart
   }
 
-  increase(quantity){
-    return quantity++
-  }
+  // increase(quantity){
+  //   return quantity++
+  // }
 
-  decrease(quantity){
-    return quantity--
-  }
+  // decrease(quantity){
+  //   return quantity--
+  // }
 
   removePosition(orderPosition){
     this.order.remove(orderPosition)
