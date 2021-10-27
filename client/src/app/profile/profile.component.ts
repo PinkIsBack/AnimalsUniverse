@@ -38,26 +38,26 @@ constructor(private postS:PostService,
       this.userId = this.route.snapshot.paramMap.get('id')
       if(params.id === localStorage.getItem("userId")){
         this.ifUser = false
-        this.profileService.fetch(params.id).subscribe((data) =>{
-        this.user = data
-        this.wishs = this.user.whishlist
-        this.orderService.getByUser(this.userId).subscribe((data) => {
-          this.orders = data
-        })
-      })
-      this.postS.featch().subscribe(
-        data => {
-          this.wposts = data
-        }
-      )
       }
       else{
         this.ifUser = true
       }
+      this.profileService.fetch(params.id).subscribe((data) =>{
+      this.user = data
+      this.wishs = this.user.whishlist
+      })
+      this.postS.featch().subscribe(
+        data => {
+          this.wposts = data
+      })
+
+      this.orderService.getByUser(this.userId).subscribe((data) => {
+      this.orders = data
+        })
+
       this.postS.getByUser(params.id).subscribe((data)=> {
             this.posts = data
           })
-
     })
 }
   showPosts(){
