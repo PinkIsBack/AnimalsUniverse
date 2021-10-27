@@ -4,7 +4,7 @@ const User = require('../models/User')
 const keys = require('../config/keys')
 const errorHandler = require('../utils/errorHandler')
 const Stat = require('../models/Statistics')
-const passport = require('passport')
+
 
 module.exports.getAll = async function(req, res) {
   try {
